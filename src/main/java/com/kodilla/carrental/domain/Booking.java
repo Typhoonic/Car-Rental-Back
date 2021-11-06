@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -36,5 +37,5 @@ public class Booking {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Equipment> equipment;
+    private List<Equipment> equipment = new ArrayList<>();
 }

@@ -8,5 +8,5 @@ import lombok.Getter;
 public class EquipmentDto {
     private Long id;
     private String equipment;
-    private Booking booking;
+    private Long bookingId;
 }
