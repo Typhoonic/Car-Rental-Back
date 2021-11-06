@@ -12,5 +12,5 @@ public class BookingDto {
     private Long id;
     private LocalDate bookSince;
     private LocalDate bookTo;
-    private List<Equipment> equipment;
+    private List<Long> equipmentId;
 }
