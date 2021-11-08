@@ -31,7 +31,7 @@ public class EquipmentController {
 
     @PutMapping
     public EquipmentDto update(){
-        return new EquipmentDto(1l, "", new Booking());
+        return new EquipmentDto(1l, "", new Booking().getId());
     }
 
     @DeleteMapping
