@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class CarMapper extends EntityMapper<Car, CarDto>{
 
     @Override
-    Car toEntity(CarDto carDto) {
+    public Car toEntity(CarDto carDto) {
         return new Car(
                 carDto.getId(),
                 carDto.getName(),
@@ -21,7 +21,7 @@ public class CarMapper extends EntityMapper<Car, CarDto>{
     }
 
     @Override
-    CarDto toDto(Car car) {
+    public CarDto toDto(Car car) {
         return new CarDto(
                 car.getId(),
                 car.getName(),
