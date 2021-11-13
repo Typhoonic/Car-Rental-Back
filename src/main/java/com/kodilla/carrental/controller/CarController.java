@@ -1,6 +1,7 @@
 package com.kodilla.carrental.controller;
 
 import com.kodilla.carrental.domain.CarDto;
+import com.kodilla.carrental.exception.EntityNotFoundException;
 import com.kodilla.carrental.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -25,35 +25,42 @@ public class CarController {
     private final CarService service;
 
     @GetMapping()
-    public List<CarDto> get() {
-        return new ArrayList<CarDto>();
+    public List<CarDto> getAll() {
+        return service.getAll();
     }
 
     @GetMapping(value = "/{carId}")
-    public CarDto get(@PathVariable Long carId){
-        return new CarDto(1L, "", "", "", false);
+    public CarDto getById(@PathVariable Long carId) throws EntityNotFoundException {
+        return service.getById(carId);
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public void create(@RequestBody CarDto carDto){
-
+    public CarDto create(@RequestBody CarDto carDto) {
+        return service.create(carDto);
     }
 
     @PutMapping(value = "/update")
-    public CarDto update(@RequestBody CarDto carDto){
-        return new CarDto(1L, "", "", "", false);
+    public CarDto update(@RequestBody CarDto carDto) throws EntityNotFoundException {
+        return service.update(carDto);
     }
 
-    @PutMapping(value = "/block")
-    public CarDto block(@PathVariable Long carId){
-        return new CarDto(1L, "", "", "", false);
+    @PutMapping(value = "/block/{carId}")
+    public void block(@PathVariable Long carId) throws EntityNotFoundException {
+        service.block(carId);
+    }
+
+    @PutMapping(value = "/unblock/{carId}")
+    public void unblock(@PathVariable Long carId) throws EntityNotFoundException {
+        service.unblock(carId);
     }
 
     @DeleteMapping(value = "{carId}")
-    public void delete(@PathVariable Long carId){}
+    public void delete(@PathVariable Long carId) throws EntityNotFoundException {
+        service.delete(carId);
+    }
 
     @GetMapping(value = "/contact")
     public String getContact(){
-        return "";
+        return service.getContact();
     }
 }
