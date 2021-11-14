@@ -26,22 +26,21 @@ public class BookingController {
     private final BookingService service;
 
     @GetMapping(value = "/schedule/{carId}")
-    public String getSchedule(@PathVariable Long carId) {
-        return new CarDto(1L, "", "", "", false).getPrice();
+    public BookingDto getSchedule(@PathVariable Long carId) {
+        return new BookingDto(1L, LocalDate.now(), LocalDate.now(), new ArrayList<>());
     }
 
     @PostMapping( consumes = APPLICATION_JSON_VALUE)
-    public BookingDto create(@RequestBody LocalDate localDate) {
+    public BookingDto create(@RequestBody BookingDto bookingDto) {
         return new BookingDto(1L, LocalDate.now(), LocalDate.now(), new ArrayList<>());
     }
 
     @PutMapping
-    public BookingDto update(@RequestBody LocalDate localDate) {
+    public BookingDto update(@RequestBody BookingDto bookingDto) {
         return new BookingDto(1L, LocalDate.now(), LocalDate.now(), new ArrayList<>());
     }
 
     @DeleteMapping(value = "{bookId}")
-    public BookingDto delete(PathVariable bookId) {
-        return new BookingDto(1L, LocalDate.now(), LocalDate.now(), new ArrayList<>());
+    public void delete(PathVariable bookId) {
     }
 }
