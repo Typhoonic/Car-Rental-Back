@@ -25,7 +25,7 @@ public class Equipment {
     private Long id;
 
     @Column(name = "equipment")
-    private String equipment;
+    private EquipmentType equipmentType;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)

@@ -13,19 +13,19 @@ public class EquipmentMapper extends EntityMapper<Equipment, EquipmentDto> {
     private final BookingRepository bookingRepository;
 
     @Override
-    Equipment toEntity(EquipmentDto equipmentDto) {
+    public Equipment toEntity(EquipmentDto equipmentDto) {
         return new Equipment(
                 equipmentDto.getId(),
-                equipmentDto.getEquipment(),
+                equipmentDto.getEquipmentType(),
                 bookingRepository.findById(equipmentDto.getBookingId()).orElse(null)
         );
     }
 
     @Override
-    EquipmentDto toDto(Equipment equipment) {
+    public EquipmentDto toDto(Equipment equipment) {
         return new EquipmentDto(
                 equipment.getId(),
-                equipment.getEquipment(),
+                equipment.getEquipmentType(),
                 equipment.getBooking().getId()
         );
     }
