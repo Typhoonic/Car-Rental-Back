@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,7 +22,8 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "books")
+@ToString
+@Entity(name = "book")
 public class Booking {
 
     @Id
@@ -38,4 +42,8 @@ public class Booking {
             fetch = FetchType.LAZY
     )
     private List<Equipment> equipment = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id")
+    private Car car;
 }
