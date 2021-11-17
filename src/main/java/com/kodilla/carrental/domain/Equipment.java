@@ -23,6 +23,7 @@ public class Equipment {
     @NotNull
     @GeneratedValue
     private Long id;
+
     @Column(name = "equipment")
     private String equipment;
 
